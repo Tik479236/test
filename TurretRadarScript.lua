@@ -18,15 +18,15 @@ Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
 local inputLabel = Instance.new("TextLabel", frame)
 inputLabel.Size = UDim2.new(1, -20, 0, 20)
 inputLabel.Position = UDim2.new(0, 10, 0, 10)
-inputLabel.Text = "Enter 3 letters of player name:"
-inputLabel.TextColor3 = Color3.new(1,1,1)
+inputLabel.Text = "Enter player nickname:"
+inputLabel.TextColor3 = Color3.new(1, 1, 1)
 inputLabel.BackgroundTransparency = 1
 inputLabel.TextSize = 14
 
 local inputBox = Instance.new("TextBox", frame)
 inputBox.Size = UDim2.new(1, -20, 0, 30)
 inputBox.Position = UDim2.new(0, 10, 0, 35)
-inputBox.PlaceholderText = "e.g. 'abc'"
+inputBox.PlaceholderText = "" -- ← пустой текст
 inputBox.Text = ""
 inputBox.TextSize = 18
 inputBox.TextColor3 = Color3.new(0, 0, 0)
@@ -35,7 +35,7 @@ inputBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 local selectRocketBtn = Instance.new("TextButton", frame)
 selectRocketBtn.Size = UDim2.new(1, -20, 0, 30)
 selectRocketBtn.Position = UDim2.new(0, 10, 0, 75)
-selectRocketBtn.Text = "🎯 Select Rocket Block"
+selectRocketBtn.Text = "🎯 Select a block"
 selectRocketBtn.BackgroundColor3 = Color3.fromRGB(80, 170, 255)
 selectRocketBtn.TextColor3 = Color3.new(0, 0, 0)
 selectRocketBtn.TextSize = 16
@@ -44,7 +44,7 @@ local statusLabel = Instance.new("TextLabel", frame)
 statusLabel.Size = UDim2.new(1, -20, 0, 25)
 statusLabel.Position = UDim2.new(0, 10, 0, 115)
 statusLabel.Text = "Status: Waiting..."
-statusLabel.TextColor3 = Color3.new(1,1,1)
+statusLabel.TextColor3 = Color3.new(1, 1, 1)
 statusLabel.TextSize = 14
 statusLabel.BackgroundTransparency = 1
 
@@ -52,15 +52,15 @@ statusLabel.BackgroundTransparency = 1
 local selectedRocket = nil
 local targetPlayer = nil
 
--- Rocket Selection
+-- Block Selection
 selectRocketBtn.MouseButton1Click:Connect(function()
-	statusLabel.Text = "Click a rocket block..."
+	statusLabel.Text = "Click on a block..."
 	local connection
 	connection = mouse.Button1Down:Connect(function()
 		local target = mouse.Target
 		if target and target:IsDescendantOf(workspace) then
 			selectedRocket = target
-			statusLabel.Text = "✅ Rocket selected!"
+			statusLabel.Text = "✅ Block selected!"
 			connection:Disconnect()
 		else
 			statusLabel.Text = "❌ Invalid block."
